@@ -15,7 +15,7 @@
         <button v-on:click="count++">+</button>
         <button v-on:click="count--">-</button>
 
-        <h4 v-if="count %2 == 0"> {{ count }} is Even</h4>
+        <h4 v-if="isEven"> {{ count }} is Even</h4>
         <h4 v-else> {{ count }} is Odd</h4>
 
     </div>
@@ -27,7 +27,13 @@
             el: '#app',
             data: {
                 count: 0
-            } 
+            },
+
+            computed: {
+                isEven(){
+                   return this.count % 2 == 0;
+                }
+            },
         })
     </script>
 </body>
