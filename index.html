@@ -8,18 +8,23 @@
 </head>
 <body>
     
-    <footer id="footer">
-        <h2>Copyright &copy; {{ date.getFullYear() }} Reserved By Samiul Islam</h2>
-    </footer>
+    <div id="app">
 
-    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+        <h1>{{ count }}</h1>
+
+        <button v-on:click="count++">+</button>
+        <button v-on:click="count--">-</button>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
 
     <script>
         new Vue({
-            el: '#footer',
+            el: '#app',
             data: {
-                date: new Date(),
-            },
+                count: 0
+            } 
         })
     </script>
 </body>
