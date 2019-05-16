@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue Js</title>
+</head>
+<body>
+    
+    <footer id="footer">
+        <h2>Copyright &copy; {{ date.getFullYear() }} Reserved By Samiul Islam</h2>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+
+    <script>
+        new Vue({
+            el: '#footer',
+            data: {
+                date: new Date(),
+            },
+        })
+    </script>
+</body>
+</html>
