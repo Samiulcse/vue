@@ -1,40 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Vue Js</title>
+    <title>Currency Converter</title>
+
+    <link rel="stylesheet" href="//stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link href="//fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-    
+
     <div id="app">
+        <div class="container my-5">
+            <div class="row">
+                <div class="col-md-6">
+                    <label>From</label>
+                    <select name="" id="" v-model="from" class="form-control">
+                        <option v-bind:value="currency.id" v-for="currency in formattedCountries">
+                            {{ currency.currencyName }}
+                        </option>
+                    </select>
+                </div>
 
-        <h1>{{ count }}</h1>
+                <div class="col-md-6">
+                    <label>To</label>
+                    <select name="" id="" v-model="to" class="form-control">
+                        <option v-bind:value="currency.id" v-for="currency in formattedCountries">
+                            {{ currency.currencyName }}
+                        </option>
+                    </select>
+                </div>
 
-        <button v-on:click="count++">+</button>
-        <button v-on:click="count--">-</button>
+            </div>
 
-        <h4 v-if="isEven"> {{ count }} is Even</h4>
-        <h4 v-else> {{ count }} is Odd</h4>
+            <div class="row">
+                <div class="col-md-6 offset-md-3">
+                    <input type="text" v-model="amount" placeholder="Amount" class="form-control my-5">
 
+                    <div class="text-center">
+                        <button v-bind:disabled="disabled" class="btn btn-lg btn-primary" v-on:click="convertCurrency">Convert</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 offset-md-3">
+                    <h1 class="text-center display-2 mt-5">{{ calculateResult }}</h1>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
-
-    <script>
-        new Vue({
-            el: '#app',
-            data: {
-                count: 0
-            },
-
-            computed: {
-                isEven(){
-                   return this.count % 2 == 0;
-                }
-            },
-        })
-    </script>
+    <script src="//cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
+    <script src="app.js"></script>
 </body>
+
 </html>
