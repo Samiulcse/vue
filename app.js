@@ -6,7 +6,8 @@ new Vue({
         apiKey: '8dbfb4563daf67ce2cfa',
         from : 'EUR',
         to : 'USD',
-        result: 0
+        result: 0,
+        loading : false
     },
 
     computed: {
@@ -20,7 +21,7 @@ new Vue({
         },
 
         disabled(){
-           return this.amount === 0 || !this.amount;
+           return this.amount === 0 || !this.amount || this.loading;
         }
 
     },
@@ -45,10 +46,24 @@ new Vue({
 
         convertCurrency(){
             const key = this.from+'_'+this.to;
+
+            this.loading = true;
+
             axios.get('https://free.currconv.com/api/v7/convert?q='+key+'&apiKey='+this.apiKey)
             .then(response =>{
+                this.loading = false;
                 this.result = response.data.results[key].val;
             })
+        }
+    },
+
+    watch: {
+        from(){
+            this.result = 0;
+        },
+
+        to(){
+            this.result = 0;
         }
     },
 

@@ -43,7 +43,9 @@
                     <input type="text" v-model="amount" placeholder="Amount" class="form-control my-5">
 
                     <div class="text-center">
-                        <button v-bind:disabled="disabled" class="btn btn-lg btn-primary" v-on:click="convertCurrency">Convert</button>
+                        <button v-bind:disabled="disabled" class="btn btn-lg btn-primary" v-on:click="convertCurrency">
+                            {{ loading ? 'Converting .... ' : 'Convert' }}
+                        </button>
                     </div>
                 </div>
             </div>
