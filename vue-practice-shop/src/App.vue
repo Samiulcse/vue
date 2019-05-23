@@ -3,8 +3,8 @@
     <div class="row">
       <div class="col-md-7">
         <div class="row">
-          <div class="col-md-6" v-for="product in products" v-bind:key="product.id">
-            <product v-bind:product="product"></product>
+          <div class="col-md-6" v-for="(product, id) in products" v-bind:key="id">
+            <product :isInCart="isInCart(product)" v-on:add-to-cart="addToCart(product)" v-bind:product="product"></product>
           </div>
         </div>
       </div>
@@ -14,27 +14,42 @@
 </template>
 
 <script>
-
-import products from '@/products.json';
-import Product from '@/components/Product.vue';
+import products from "@/products.json";
+import Product from "@/components/Product.vue";
 
 export default {
   name: "app",
 
-  components:{
+  components: {
     Product
   },
-
-  data(){
+  data() {
     return {
-      products
+      products,
+      cart: []
+    };
+  },
+
+  methods: {
+    addToCart(product) {
+      this.cart.push(product);
+    },
+
+    isInCart(product) {
+      const item = this.cart.find(item => item.id === product.id);
+
+      if (item) {
+        return true;
+      }
+
+      return false;
     }
   }
 };
 </script>
 
 <style>
-body{
+body {
   background-color: #fbf8f3;
 }
 </style>
