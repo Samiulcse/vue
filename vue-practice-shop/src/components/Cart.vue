@@ -7,7 +7,7 @@
       <ul class="list-group">
         <li class="list-group-item" v-for="(item, index) in items" :key="index">
           {{ item.title }} - ${{ item.price }}
-          <button class="btn badge badge-danger float-right">Remove From Cart</button>
+          <button @click="$emit('remove-from-cart', item)" class="btn badge badge-danger float-right">Remove From Cart</button>
         </li>
       </ul>
     </div>
